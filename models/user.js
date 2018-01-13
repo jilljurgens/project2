@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     password: DataTypes.STRING
   });
 
- // Users.associate = function(models) {
+  // Users.associate = function(models) {
   //   // Associating Author with Posts
   //   // When an Author is deleted, also delete any associated Posts
   //   Users.hasMany(models.Post, {
@@ -15,5 +15,5 @@ module.exports = function(sequelize, DataTypes) {
   //   });
   // };
 
- return User;
+  return User;
 };
