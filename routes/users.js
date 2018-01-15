@@ -55,6 +55,43 @@ router.post('/register', function(req, res){
 		res.redirect('/users/login');
 	}
 });
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({
+      where: {
+        'username': username
+      }
+    }).then(function (user) {
+      if (user == null) {
+        return done(null, false, { message: 'Incorrect credentials.' })
+      }
+        
+      var hashedPassword = bcrypt.hashSync(password, user.salt)
+        
+      if (user.password === hashedPassword) {
+        return done(null, user)
+      }
+        
+      return done(null, false, { message: 'Incorrect credentials.' })
+    })
+  }
+))
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
+});
+
+router.post('/login',
+  passport.authenticate('local', {successRedirect:'/', failureRedirect:'/users/login',failureFlash: true}),
+  function(req, res) {
+    res.redirect('/');
+  });
+
 router.get('/logout', function(req, res){
 	req.logout();
 

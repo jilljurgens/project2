@@ -19,9 +19,9 @@
     "express-session": "*",
     "express-validator": "*",
     "mysql2": "^1.5.1",
-    "passport": "*",
+    "passport": "^0.4.0",
     "passport-http": "*",
     "passport-local": "*",
-    "sequelize": "^4.31.0"
+    "sequelize": "^4.3.1"
   }
 }
