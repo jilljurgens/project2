@@ -82,8 +82,11 @@ app.use('/', routes);
 app.use('/users', users);
 
 // Set Port
-app.set('port', (process.env.PORT || 3000));
+var PORT = process.env.PORT || 3000;
 
-app.listen(3000, function(){
-	console.log('Server started on port '+app.get('port'));
+// Syncing our sequelize models and then starting our express app
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
