@@ -17,7 +17,7 @@ var users = require('./routes/users');
 var app = express();
 
 // Requiring our models for syncing
-// var db = require("./models");
+var db = require("./models");
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));

@@ -40,7 +40,7 @@ router.post('/register', function(req, res){
 	} else {
 		var newUser = new User({
 			name: name,
-			email:email,
+			email: email,
 			username: username,
 			password: password
 		});
