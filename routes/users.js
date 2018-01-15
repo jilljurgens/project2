@@ -73,11 +73,19 @@ passport.use(new LocalStrategy(
       if (user == null) {
         return done(null, false, { message: 'Unknown User' });
       }
-      if (user.password === password) {
-        return done(null, user);
-      }
-        
-      return done(null, false, { message: 'Incorrect password.' });
+      // if (user.password === password) {
+      //   return done(null, user);
+      // }
+	    bcrypt.compare(password, user.password, function(err, res) {
+	    	if (err) {
+	    		throw err;
+	    	}
+	    	if(res){
+	    		return done(null, res, {message: 'you loged in'});
+	    	}else{
+	    		return done(null, false, { message: 'Incorrect password.' });
+	    	}
+		});
     })
   }
 ))
