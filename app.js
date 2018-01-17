@@ -11,6 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var dashbord = require('./routes/dashbord_routes');
 // var register = require()
 
 // Init App
@@ -80,6 +81,8 @@ app.use('/', routes);
 //   res.render('index');
 // });
 app.use('/users', users);
+app.use('/dashbord', dashbord);
+// require("./routes/dashbord_routes.js")(app);
 
 // Set Port
 var PORT = process.env.PORT || 3000;

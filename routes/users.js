@@ -16,10 +16,10 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-// dashbord
-router.get('/dashbord', function(req, res){
-	res.render('dashbord');
-});
+// // dashbord
+// router.get('/dashbord', function(req, res){
+// 	res.render('dashbord');
+// });
 
 
 // Register User
@@ -64,10 +64,11 @@ router.post('/register', function(req, res){
 	}
 });
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    db.User.findOne({
+  function(username, password, done) {//function(email,pass,done)
+  	console.log(username);
+    db.User.findOne({//db.User.findByEmail--WRITE findByEmail function in users in models
       where: {
-        'username': username
+        'username': username 
       }
     }).then(function (user) {
       if (user == null) {
@@ -77,11 +78,13 @@ passport.use(new LocalStrategy(
       //   return done(null, user);
       // }
 	    bcrypt.compare(password, user.password, function(err, res) {
+	    	// console.log(user);
+	    	// console.log(res);
 	    	if (err) {
 	    		throw err;
 	    	}
 	    	if(res){
-	    		return done(null, res, {message: 'you loged in'});
+	    		return done(null, user, {message: 'you logged in'});
 	    	}else{
 	    		return done(null, false, { message: 'Incorrect password.' });
 	    	}
@@ -90,19 +93,23 @@ passport.use(new LocalStrategy(
   }
 ))
 passport.serializeUser(function(user, done) {
+	
   done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  db.User.findById(id, function (err, user) {
-    done(err, user);
+	// console.log("passpot de");
+	// console.log(id);
+  db.User.findById(id).then(function (user) {
+  	// console.log("error"+err+ "user" ,user);
+    done(null, user);
   });
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/users/dashbord', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/dashbord/dashbord', failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/dashbord/dashbord');
   });
 
 router.get('/logout', function(req, res){
