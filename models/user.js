@@ -1,12 +1,17 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    // Giving the Author model a name of type STRING
+
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     username: DataTypes.STRING,
     password: DataTypes.STRING,
     salt: DataTypes.STRING
   });
+
+User.associate = function(models) {
+   models.User.belongsToMany(models.Potluck, { through: models.UserPotluck, foriegnKey: "potluck_id" })
+    
+  };
 
   // Users.associate = function(models) {
   //   // Associating Author with Posts
