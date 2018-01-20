@@ -5,5 +5,11 @@ module.exports = function(sequelize, DataTypes) {
 
 
  });
+  UserPotluck.associate = function(models) {
+  console.log(models);
+   models.UserPotluck.belongsTo(models.User);
+   models.UserPotluck.belongsTo(models.Potluck);
+    
+  };
   return UserPotluck;
 }
