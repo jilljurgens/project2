@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var bcrypt = require('bcrypt');
+var app = express();
 var LocalStrategy = require('passport-local').Strategy;
 
 var db = require('../models');
@@ -93,8 +94,7 @@ passport.use(new LocalStrategy(
   }
 ))
 passport.serializeUser(function(user, done) {
-	
-  done(null, user.id);
+	 done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -107,12 +107,15 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local', {successRedirect:'/dashbord/dashbord', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local'), //{successRedirect:'/dashbord/dashbord', failureRedirect:'/users/login',failureFlash: true}),
   function(req, res) {
-    res.redirect('/dashbord/dashbord');
+  	userID = req.user.id;
+  	console.log("user id of the user" + userID);
+    res.redirect(`/dashbord/dashbord?userId=${userID}`);
+    //res.redirect('/dashbord/dashbord',{id:req.user.id});
   });
 
-router.get('/logout', function(req, res){
+router.get('/logout', function(req, res){ 
 	req.logout();
 
 	req.flash('success_msg', 'You are logged out');

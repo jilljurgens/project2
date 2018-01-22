@@ -12,10 +12,15 @@ var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var dashbord = require('./routes/dashbord_routes');
+var potLuck = require('./routes/potLuck_routes');
 // var register = require()
+
 
 // Init App
 var app = express();
+
+app.use(express.static('public'));
+
 
 // Requiring our models for syncing
 var db = require("./models");
@@ -39,7 +44,6 @@ app.use(session({
     saveUninitialized: true,
     resave: true
 }));
-
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
@@ -82,6 +86,7 @@ app.use('/', routes);
 // });
 app.use('/users', users);
 app.use('/dashbord', dashbord);
+app.use('/potLuck', potLuck);
 // require("./routes/dashbord_routes.js")(app);
 
 // Set Port
