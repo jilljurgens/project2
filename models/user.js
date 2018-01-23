@@ -4,22 +4,13 @@ module.exports = function(sequelize, DataTypes) {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    phoneNo: DataTypes.STRING
   });
 
-
-User.associate = function(models) {
-   models.User.belongsToMany(models.PotLuck, { through: models.UserPotluck, foriegnKey: "potluck_id" })
-    
+  User.associate = function(models) {
+   //models.User.belongsToMany(models.PotLuck, { through: models.UserPotluck, foriegnKey: "potluck_id" })
+      //models.User.belongsToMany(models.PotLuck, { through: models.UserPotluck})
   };
-
-
-  // Users.associate = function(models) {
-  //   // Associating Author with Posts
-  //   // When an Author is deleted, also delete any associated Posts
-  //   Users.hasMany(models.Post, {
-  //     onDelete: "cascade"
-  //   });
-  // };
   return User;
 };

@@ -1,10 +1,10 @@
 $(document).ready(function() {
-	$(".potlucktable").hide();
+	$(".potLuck-container").hide();
 
 	var potLuckList = $("tbody");
 	var potLuckContainer = $(".potLuck-container");
 
-	$(document).on("click", "#potLuckInfo", getPotLuckInfo);
+	$(document).on("click", ".potLuckInfo", getPotLuckInfo);
 
 	function getPotLuckInfo(event){
 		event.preventDefault();
@@ -12,12 +12,14 @@ $(document).ready(function() {
 		$(".potLuck-container").show();
 		$.get("/potLuck/user/potLuck", function(data){
 				console.log("inside ajax" +JSON.stringify(data));
-				if (data.length !== 0) {
-	    			for (var i = 0; i < data.length; i++) {
+				//console.log("data[1]" +JSON.stringify(data[1].id));
+				if (data.potLuckData.length !== 0) {
+	    			for (var i = 0; i < data.potLuckData.length; i++) {
 	     				 var row = $("#potlucktable > tbody");
 	     				 row.addClass("eventsInTable");
-						 row.append("<tr><td>" + data[i].id + "</td><td>" + data[i].date + "</td><td>"
-	      				+ data[i].guestEmails + "</td>");
+	     				 console.log(data.potLuckData[i].guestEmails);
+						 row.append("<tr><td>" + data.potLuckData[i].id + "</td><td>" + data.potLuckData[i].date + "</td><td>"
+	      				+ data.potLuckData[i].guestEmails + "</td></tr>");
 	      // row.append("<p>" + data[i].date + "</p>");
 	      // row.append("<p>" + data[i].guestnames + "</p>");
 
@@ -28,9 +30,9 @@ $(document).ready(function() {
 	 			} else {
 	 				renderEmpty();
 	 			}
-		});
+			
+		})
 	}
-
 
 	// Function for handling what to render when there are no potLucks
 	function renderEmpty(){
@@ -42,5 +44,4 @@ $(document).ready(function() {
 
 	}
 
-	
 });
