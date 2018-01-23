@@ -4,6 +4,7 @@ var passport = require('passport');
 const nodemailer = require('nodemailer');
 var Sequelize = require('sequelize');
 var dateFormat = require('dateformat');
+var now = new Date();
 
 var db = require('../models');
 
@@ -17,6 +18,12 @@ router.post('/potLuck', function(req, res){
 	console.log(req.user.dataValues.id);//.User.dataValues.id);
 	console.log("inside potluck");
 	var date = req.body.date;
+	console.log(req.body);
+	var destination = req.body.hostedAt;
+	console.log("-------destination--------" +destination);
+	var theme = req.body.theme;
+	var createdAtDateOnly = req.body.createdAtDateOnly;
+	console.log("-------theme------"+theme);
 	req.checkBody('date', 'date is required').notEmpty();
 	req.checkBody('date', 'enter correct formated date').isISO8601();
 	//console.log(req.checkBody('date', 'enter correct formated date'));
@@ -31,6 +38,9 @@ router.post('/potLuck', function(req, res){
 
 		var newPotluck ={
 			date: date,
+			theme: theme,
+			hostedAt: destination,
+			createdAtDateOnly: createdAtDateOnly,
 			UserId: req.user.dataValues.id
 		};
 		db.PotLuck.create(newPotluck, function(err, potLuck){
@@ -46,6 +56,7 @@ router.post('/potLuck', function(req, res){
 var UserId;
 var userName;
 var userEmail;
+var phoneNo;
 
 //addes email's of guests to potluck table
 router.post('/potLuck/update', function(req, res){
@@ -53,6 +64,9 @@ router.post('/potLuck/update', function(req, res){
 	const Op = Sequelize.Op;
 	console.log("inside potluck update");
 
+	var compareDate = dateFormat(now, "d mmmm yyyy");
+	console.log("compareDate :" +compareDate);
+	//console.log("----req----"+req.body);
 
 	var guestEmails = req.body.guestEmails;
 	// req.checkBody('emails', 'emails are required').notEmpty();
@@ -63,6 +77,9 @@ router.post('/potLuck/update', function(req, res){
 	UserId = req.user.dataValues.id;
 	userName = req.user.dataValues.username;
 	userEmail = req.user.dataValues.email;
+	phoneNo = req.user.dataValues.phoneNo;
+
+	console.log("findone userId****"+UserId);
 
 	// if(errors){
 	// 	res.render('dashbord',{
@@ -70,24 +87,59 @@ router.post('/potLuck/update', function(req, res){
 	// 	});
 	// 	console.log(errors);
 	// } else{
+		console.log("guestEmails:" +guestEmails);
+		db.PotLuck.findOne({
+			where:{
+					UserId: UserId
+					// createdAtDateOnly: {
 
-		var potluckadd ={
-			guestEmails: guestEmails
-			// UserId: req.user.dataValues.id
-		};
-		db.PotLuck.update(potluckadd, 
+					// 	[Op.eq]: compareDate
+
+					// }
+			}
+		}).then(function(data){
+
+			console.log(arguments);
+			if(!data){
+				console.log("no data is selected");
+				return;
+			}
+			console.log(data);
+			console.log("emails data"+JSON.stringify(data));
+			emails = JSON.stringify(data.guestEmails);
+			//addData(guestEmails);
+			if(emails != null){
+				var allEmails = emails +"," +guestEmails;
+			}
+			else{
+				allEmails = guestEmails;
+			}
+			
+			console.log("--all emails--"+allEmails);
+			var potluckadd = {
+				guestEmails: allEmails
+				// UserId: req.user.dataValues.id
+			};
+			db.PotLuck.update(potluckadd, 
 			{
-				where:{	UserId: req.user.dataValues.id
-						// createdAt: {
-						// 	[Op.eq]: new Date()
-						// }
+				where:{	
+					UserId: req.user.dataValues.id,
+					createdAtDateOnly: {
+
+						[Op.eq]: compareDate
+
 					}
+				}
 
 			}, 
 			function(err, potLuck){
 					if(err) throw err;
 					console.log(potLuck);
 			});
+
+		}).catch(function(err){
+			console.log(err);
+		});
 		db.PotLuck.findOne({
 			where: {
 				UserId: UserId
@@ -98,9 +150,11 @@ router.post('/potLuck/update', function(req, res){
 		}).then(function(potLuckInfo){
 			potLuckDate = JSON.stringify(potLuckInfo.date);
 		 	potLuckId = JSON.stringify(potLuckInfo.id);
+		 	theme = JSON.stringify(potLuckInfo.theme);
+		 	destination = JSON.stringify(potLuckInfo.hostedAt);
 
 		 	//function call which sends req mails to the guest
-		 	sendemailRequest(guestEmails, potLuckDate, potLuckId);
+		 	sendemailRequest(guestEmails, potLuckDate, potLuckId, theme, destination);
 			req.flash('success_msg', 'Invited Guests');
 
 			res.redirect('/dashbord/dashbord');
@@ -108,7 +162,7 @@ router.post('/potLuck/update', function(req, res){
 
 })
 //function that sends email requests
-function sendemailRequest(guestEmails, potLuckDate, potLuckId){
+function sendemailRequest(guestEmails, potLuckDate, potLuckId, theme, destination){
 
 	// var outputData = {
 	// 	potLuckDate: potLuckDate,
@@ -123,6 +177,9 @@ function sendemailRequest(guestEmails, potLuckDate, potLuckId){
     	<ul>  
 	      <li>Name: ${userName}</li>
 	      <li>Email: ${userEmail}</li>
+	      <li>Phone Number : ${phoneNo}</li>
+	      <li>Theme of the PotLuck: ${theme}</li>
+	      <li>Hosted At: ${destination}</li>
 	      <li>Date of PotLuck: ${potLuckDate}</li>
 	      <li>Id of PotLuck: ${potLuckId}</li>
 	    </ul>
@@ -183,38 +240,20 @@ function sendemailRequest(guestEmails, potLuckDate, potLuckId){
 // }
 //get all potluck info of the user that they host
 router.get("/user/potLuck",function(req,res){
-	console.log("ENTERREEDFJEFOINAOSDPGN");
 	db.PotLuck.findAll({
 		where:{
 			UserId: req.user.dataValues.id
 		}
 	}).then(function(potLuckData){
-		console.log("-----data-----------"+ JSON.stringify(potLuckData))
-		console.log(potLuckData);
-	//res.render(`/dashbord/dashbord?${res.json(potLuckData)}`);
-	//res.render(`/dashbord/dashbord?${res.json(potLuckData)}`);
-	res.json({potLuckData: potLuckData});
-	//res.render('dashbord', {potLuckData: potLuckData});
-		//res.json(potLuckData);
-		//res.redirect('/user/potLuck');
-	// }).then(function(potLuckData){
-	// 	res.redirect('/user/potLuck');
-	// });
-});
-// router.get("/user/potLuck",function(req,res){
-
-// 	res.redirect('/user/potLuck');
-});
-
-// router.get("user/allPotlucks", function(req, res) {
-// 	db.PotLuck.findAll({
-
-// 	}).then(function(potLuckData){
-// 		res.render('dashbord', {potLuckData: potLuckData});
-// 	})
-// })
-
-
+		// res.json(potLuckData)
+		console.log("------data---"+JSON.stringify(potLuckData))
+		var data = JSON.stringify(potLuckData);
+		//res.redirect('/dashbord/dashbord',{data:data});
+		//res.render(`/dashbord/dashbord?${JSON.stringify(res.json(potLuckData))}`);
+		//res.render('dashbord',{potLuckData: potLuckData});
+		res.json({potLuckData: potLuckData});
+	})
+})
 
 module.exports = router;
 
