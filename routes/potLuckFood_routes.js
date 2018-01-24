@@ -29,6 +29,7 @@ router.post('/potLuck/food', function(req, res){
 			idOfPotLuck: potLuckId,
 			UserId: userId
 		}
+
 		db.UserPotluck.create(foodInfo, function(data){
 			console.log("success");
 			res.redirect('/dashbord/dashbord');
@@ -38,10 +39,17 @@ router.post('/potLuck/food', function(req, res){
 			res.status(500).send(err);
 		});
 		
+
+		db.UserPotluck.create(foodInfo, function(err, data){
+			if(err) throw err;
+		});
+		res.redirect('/dashbord/dashbord');
+
 	}
 	
 
 })
+
 
 router.get("/potLuck/food", function(req, res){
 	 var query = {};

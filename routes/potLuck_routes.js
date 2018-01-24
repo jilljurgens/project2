@@ -90,12 +90,20 @@ router.post('/potLuck/update', function(req, res){
 		console.log("guestEmails:" +guestEmails);
 		db.PotLuck.findOne({
 			where:{
+
 					UserId: UserId,
 					createdAtDateOnly: {
 
 						[Op.eq]: compareDate
 
 					}
+
+					UserId: UserId
+					// createdAtDateOnly: {
+
+					// 	[Op.eq]: compareDate
+
+					// }
 			}
 		}).then(function(data){
 
@@ -114,6 +122,15 @@ router.post('/potLuck/update', function(req, res){
 			}
 			else{
 				 allEmails = emails +"," +guestEmails;
+			console.log(data);
+			console.log("emails data"+JSON.stringify(data));
+			emails = JSON.stringify(data.guestEmails);
+			//addData(guestEmails);
+			if(emails != null){
+				var allEmails = emails +"," +guestEmails;
+			}
+			else{
+				allEmails = guestEmails;
 			}
 			
 			console.log("--all emails--"+allEmails);
@@ -220,6 +237,7 @@ function sendemailRequest(guestEmails, potLuckDate, potLuckId, theme, destinatio
 	    msg = "emailed the request";
 	    //res.render('dashbord', {success_msg: msg});
 	    res.flash('success_msg', 'emailed the request');
+	    req.flash('success_msg', 'emailed the request');
 	    // res.render('dashbord');
 	});
 }

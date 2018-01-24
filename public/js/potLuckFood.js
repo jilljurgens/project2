@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$(".joinForm").hide();
 	$(document).on("click", ".join", joinPotLuck);
+
 	$(document).one("click", ".addInfo", addInfo);
 
 	var potLuckFood = $("#food");
@@ -16,6 +17,17 @@ $(document).ready(function() {
 		//$(".alert-success").hide();
 
 
+		console.log("inside joinPotLuck");
+		$(".joinForm").show();
+		event.preventDefault();
+
+
+	$(document).on("click", ".addInfo", addInfo);
+
+	var potLuckFood = $("#food");
+	var potLuckId= $("#potLuckId");
+
+	function joinPotLuck(){
 		console.log("inside joinPotLuck");
 		$(".joinForm").show();
 		event.preventDefault();
@@ -38,6 +50,7 @@ $(document).ready(function() {
 	    });
 
 	}
+
 
 	var bodyContainer = $(".body-container");
 	
@@ -75,6 +88,16 @@ $(document).ready(function() {
 			$(".alert-danger").show().delay(3000).fadeOut();
 
 		});
+
+	function upsertPotLuckFood(foodData){
+		console.log(" inside upsertPotLuckFood");
+		$.post("/potLuckFood/potLuck/food", foodData)
+			.done(function(data){
+				$(".joinForm").hide();
+			})
+			.fail(function(err){
+				console.log(err);
+			});
 	}
 
 	
