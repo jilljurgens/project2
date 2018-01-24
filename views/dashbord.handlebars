@@ -15,6 +15,19 @@
 	      	<button type="button" class="btn btn-info inviteGuests">Invite Guests</button>
 
           <button type="button" class="btn btn-info join">Join a PutLuck</button>
+
+
+          <button type="button" class="btn btn-info foodinfo">PutLuck Info</button>
+		</div>
+		
+	</div>
+  <div class="body-container">
+
+	<div class="row potLuck-container">
+	    <div class="col-lg-8 col-md-offset-2">
+        <h3 id="potLuckInfoH1">PotLucks You Hosted</h3>
+        <table class="table table-hover" id="potlucktable">
+            <thead id="theadInfo">
 		</div>
 		
 	</div>
@@ -30,12 +43,32 @@
                 <th>Guest Emails</th>
               </tr>
             </thead>
-            <tbody id="table">
-  
-            </tbody>
+
+            <tbody id="tbodyInfo">
         </table>         
 	    </div>
 	</div>
+
+
+
+<!-- food info table -->
+  <div class="row potLuck-FoodContainer">
+      <div class="col-lg-8 col-md-offset-2">
+        <h3>PotLuck Info</h3>
+        <table class="table table-hover" id="potluckFood">
+            <thead>
+              <tr>
+                <th>User Name</th>
+                <th>Coming/Not</th>
+                <th>Food</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyfood">
+  
+            </tbody>
+        </table>         
+      </div>
+  </div>
 
 	<!-- host a potLuck form -->
 	<div class="row hostPotForm">
@@ -49,6 +82,19 @@
               <input type="text" class="form-control" id="destination">
             </div> 
             <button type="submit" class="btn btn-default createOne">Create</button>   
+        </div>  
+    </div>
+
+    <!-- host a potLuck form -->
+
+  <div class="row fooInfo">
+        <div class="col-lg-12">
+          <div class="form-group">
+              <label for="idOfPotLuck">enter the potLuck id </label>
+              <input type="textarea" class="form-control" id="idOfPotLuck">
+          </div> 
+          <button type="submit" class="btn btn-default see">SHOW</button> 
+             
         </div>  
     </div>
 
@@ -85,6 +131,10 @@
     </div>
 
 
+  </div><!--end of body-container-->
+    <!-- <div class="row marketing">
+
+
     <div class="row marketing">
         <div class="col-lg-12">
           {{#if success_msg}}
@@ -99,6 +149,9 @@
             <div class="alert alert-danger">{{error}}</div>
           {{/if}} 
         </div>
+
+    </div> -->
+
     </div>
 
       <!-- <script type="text/javascript">

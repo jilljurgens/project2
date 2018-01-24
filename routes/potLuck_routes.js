@@ -90,6 +90,14 @@ router.post('/potLuck/update', function(req, res){
 		console.log("guestEmails:" +guestEmails);
 		db.PotLuck.findOne({
 			where:{
+
+					UserId: UserId,
+					createdAtDateOnly: {
+
+						[Op.eq]: compareDate
+
+					}
+
 					UserId: UserId
 					// createdAtDateOnly: {
 
@@ -104,6 +112,16 @@ router.post('/potLuck/update', function(req, res){
 				console.log("no data is selected");
 				return;
 			}
+			console.log("---email data----"+data);
+			console.log("emails data"+JSON.stringify(data));
+			emails = JSON.stringify(data.guestEmails);
+			//addData(guestEmails);
+			console.log("---------" +emails);
+			if(emails === null){
+				var allEmails = guestEmails;
+			}
+			else{
+				 allEmails = emails +"," +guestEmails;
 			console.log(data);
 			console.log("emails data"+JSON.stringify(data));
 			emails = JSON.stringify(data.guestEmails);
@@ -216,6 +234,9 @@ function sendemailRequest(guestEmails, potLuckDate, potLuckId, theme, destinatio
 	    if (error) {
 	        return console.log('error and trasporter', error);
 	    }
+	    msg = "emailed the request";
+	    //res.render('dashbord', {success_msg: msg});
+	    res.flash('success_msg', 'emailed the request');
 	    req.flash('success_msg', 'emailed the request');
 	    // res.render('dashbord');
 	});
