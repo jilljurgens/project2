@@ -1,47 +1,55 @@
+
 <html>
 <head>
-	<title>Login</title>
-	<link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+  <title>Potluck Peeps</title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.css">
+  <link href="https://fonts.googleapis.com/css?family=Ultra" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <body>
-	<div class="container">
-      <div class="header clearfix">
-        <nav>
+<div class="container-fluid ">
+
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h3 class=" my-0  mr-md-auto font-weight-normal PotluckPeeps">PotLuck Peeps</h3>
+        <nav class="my-2 my-md-0 ">
+          
           <ul class="nav nav-pills float-right">
             {{#if user}}
               <li class="nav-item">
-                <a class="nav-link active" href="/">Dashbord <span class="sr-only">(current)</span></a>
+                <a class="nav-link button  mr-md-3" href="/dashbord/dashbord">Dashboard <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/users/logout">LogOut</a>
+                <a class="nav-link navLink btn" href="/users/logout">Log Out</a>
               </li>
             {{else}}
               <li class="nav-item">
-                <a class="nav-link" href="/users/login">Login</a>
+                <a class="nav-link button mr-md-3 " href="/users/login">Log In</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/users/register">Register</a>
+                <a class="nav-link navLink btn " href="/users/register">Sign Up</a>
               </li>
             {{/if}}
           </ul>
         </nav>
-        <h3 class="text-muted">PotLuck</h3>
       </div>
-
       {{#if user}}
       {{else}}
         <div class="jumbotron">
-          <h1 class="display-3">POTLUCK LA ALA LA</h1>
-          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-lg btn-success" href="#" role="button">Register today</a></p>
+        
+          <div class="jumbotrontext">
+            <h1 class="jumbotronh1">POTLUCK PEEPS</h1>
+            <p class="lead">Enjoy friends, food, and good times!</p>
+            <p><a class="btn jumbotronbtn button" href="/users/register" role="button">Join today</a></p>
+          </div>
         </div>
+
       {{/if}}
 
       <div class="row marketing">
-        <div class="col-lg-12">
+        <div class=" clear col-lg-12">
           {{#if success_msg}}
             <div class="alert alert-success">{{success_msg}}</div>
           {{/if}}
@@ -54,16 +62,20 @@
             <div class="alert alert-danger">{{error}}</div>
           {{/if}}
 
-        	{{{body}}} 
+          {{{body}}} 
         </div>
       </div>
 
-      <footer class="footer">
-        <p>&copy; POTLUCK 2017</p>
+      <footer class=" footer bg-white">
+        <p class=" my-0  mr-md-auto font-weight-normal ">&copy; POTLUCK PEEPS 2017</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div> 
     <script type="text/javascript" src="/js/dashbord.js"></script>
     <script type="text/javascript" src="/js/showPotLucks.js"></script>
+    <script type="text/javascript" src="/js/potLuckFood.js"></script>
+    <script type="text/javascript" src="/js/potLuckFood.js"></script>
+    <script type="text/javascript" src="/js/foodInfo.js"></script>
+
 </body>
 </html>
