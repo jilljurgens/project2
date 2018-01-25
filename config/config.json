@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "bala",
+    "password": "password",
     "database": "potLucknew_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -14,7 +14,11 @@
     "dialect": "mysql"
   },
   "production": {
+<<<<<<< HEAD
 "use_env_variable": "JAWSDB_URL",
+=======
+  "use_env_variable": "JAWSDB_URL",
+>>>>>>> 24e3bc361627f0c8b052ef0643c19eb7ff689a72
     "dialect": "mysql"
   }
 }
