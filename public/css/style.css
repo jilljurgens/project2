@@ -1,8 +1,12 @@
 /* Space out content a bit */
 body {
+ /* margin-bottom: 3rem;*/
+
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
-}
+  background: linear-gradient(to bottom right, #fdfcfb, #e2d1c3);
+   
+  }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -15,7 +19,7 @@ body {
 /* Custom page header */
 .header {
   padding-bottom: 1rem;
-  border-bottom: .05rem solid #e5e5e5;
+  border-bottom: .05rem solid #ab9353;
 }
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
@@ -26,9 +30,14 @@ body {
 
 /* Custom page footer */
 .footer {
+  clear:both;
   padding-top: 1.5rem;
   color: #777;
-  border-top: .05rem solid #e5e5e5;
+  border-top: .05rem solid #ab9353;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 
 /* Customize container */
@@ -37,28 +46,6 @@ body {
     max-width: 46rem;
   }
 }
-.container-narrow > hr {
-  margin: 2rem 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-  text-align: center;
-  border-bottom: .05rem solid #e5e5e5;
-}
-.jumbotron .btn {
-  padding: .75rem 1.5rem;
-  font-size: 1.5rem;
-}
-
-/* Supporting marketing content */
-.marketing {
-  margin: 3rem 0;
-}
-.marketing p + h4 {
-  margin-top: 1.5rem;
-}
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 48em) {
   /* Remove the padding we set earlier */
@@ -68,15 +55,101 @@ body {
     padding-right: 0;
     padding-left: 0;
   }
-  /* Space out the masthead */
+/*   Space out the masthead */
   .header {
     margin-bottom: 2rem;
   }
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron {
     border-bottom: 0;
+    padding-top: 95px;
   }
+}
+
+.container-fluid{
+  min-height:100%;
+   position:relative; 
+}
+
+/* Main marketing message and sign up button */
+.jumbotron {
+  text-align: center;
+  background-image: url("../images/potluck1.png");
+  background-size:cover;
+  /*opacity: 0.6;*/
+  position: relative;
+  height: auto;
+  min-height: 400px;
+  
+}
+.jumbotronbtn {
+  padding: .75rem 1.5rem;
+  font-size: 1.5rem;
+
+}
+/* Supporting marketing content */
+.marketing {
+ /* margin: 3rem 0;*/
+  clear:both;
+}
+.marketing p + h4 {
+  margin-top: 1.5rem;
 }
 .page-header{
   margin-top: 0px;
 }
+.jumbobutton{
+  background-color: #ab9353;
+  border:none;
+  color:#fff;
+}
+.jumbobutton:hover {
+    background-color: #4d2c3d; 
+    color: white;
+}
+.button{
+  background-color: #4d2c3d;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+.button:hover{
+  background-color: #ab9353;
+  color: #fff;
+  border-radius: 0.25rem;
+}
+.navLink{
+  color: #4d2c3d;
+}
+.navLink:hover{
+  color: #ab9353;
+}
+.jumbotrontext{
+  text-align: center;
+  
+  -webkit-text-stroke: 1px white;
+  }
+.jumbotronh1{
+ 
+  font-family: 'Ultra', serif;
+  color:#155765;
+  text-align: center;
+  
+}
+.PotluckPeeps{
+  color: #155765;
+ /* font-family: 'Berkshire Swash', cursive;
+  font-family: 'Pacifico', cursive;
+  font-family: 'Corben', cursive;
+  font-family: 'Shrikhand', cursive;
+  font-family: 'Bevan', cursive;*/
+  font-family: 'Ultra', serif;
+stroke: 2px 2px #ab9353;
+}
+.clear{
+  clear:both;
+}
+
+bluebell #155765
+olive #57652a
+ornate #ab9353
+plum #4d2c3d
