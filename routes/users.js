@@ -30,6 +30,7 @@ router.post('/register', function(req, res){
 	var username = req.body.username;
 	var password = req.body.password;
 	var password2 = req.body.password2;
+	var phone = req.body.phone;
 	var hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 
 	// Validation
@@ -39,6 +40,7 @@ router.post('/register', function(req, res){
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+	req.checkBody('phone', 'Phone Number is required').notEmpty();
 
 	var errors = req.validationErrors();
 
@@ -51,6 +53,7 @@ router.post('/register', function(req, res){
 			name: name,
 			email: email,
 			username: username,
+			phoneNo: phone,
 			password: hashedPassword
 		};
 
@@ -87,7 +90,7 @@ passport.use(new LocalStrategy(
 	    	if(res){
 	    		return done(null, user, {message: 'you logged in'});
 	    	}else{
-	    		return done(null, false, { message: 'Incorrect password.' });
+	    		return done(null, false, {message: 'Incorrect password.' });
 	    	}
 		});
     })
@@ -107,12 +110,13 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.post('/login',
-  passport.authenticate('local'), //{successRedirect:'/dashbord/dashbord', failureRedirect:'/users/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/dashbord/dashbord', failureRedirect:'/users/login',failureFlash: true}),
+
   function(req, res) {
   	userID = req.user.id;
   	console.log("user id of the user" + userID);
-    res.redirect(`/dashbord/dashbord?userId=${userID}`);
-    //res.redirect('/dashbord/dashbord',{id:req.user.id});
+    //res.redirect(`/dashbord/dashbord?userId=${userID}`);
+    res.redirect('/dashbord/dashbord');
   });
 
 router.get('/logout', function(req, res){ 

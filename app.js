@@ -13,6 +13,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var dashbord = require('./routes/dashbord_routes');
 var potLuck = require('./routes/potLuck_routes');
+var potLuckFood = require('./routes/potLuckFood_routes');
 // var register = require()
 
 
@@ -87,6 +88,7 @@ app.use('/', routes);
 app.use('/users', users);
 app.use('/dashbord', dashbord);
 app.use('/potLuck', potLuck);
+app.use('/potLuckFood', potLuckFood);
 // require("./routes/dashbord_routes.js")(app);
 
 // Set Port
@@ -94,7 +96,9 @@ var PORT = process.env.PORT || 3000;
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: false }).then(function() {
-  app.listen(PORT, function() {
+  app.listen(process.env.PORT || 3000, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
+
+module.exports = app;
