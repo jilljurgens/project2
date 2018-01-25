@@ -1,13 +1,13 @@
 $(document).ready(function() {
 	$(".joinForm").hide();
 	$(document).on("click", ".join", joinPotLuck);
-	$(document).one("click", ".addInfo", addInfo);
+	$(document).on("click", ".addInfo", addInfo);
 
 	var potLuckFood = $("#food");
 	var potLuckId= $("#potLuckId");
 	var flag = 0;
 
-	function joinPotLuck(){
+	function joinPotLuck(event){
 		$(".potLuck-container").hide();
 		$(".potLuck-FoodContainer").hide();
 		$(".fooInfo").hide();
@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 	}
 
-	function addInfo(){
+	function addInfo(event){
 		var radioValue;
 		event.preventDefault();
 	    // $("input[type='button']").click(function(){
@@ -57,17 +57,18 @@ $(document).ready(function() {
 			console.log("fail");
 			console.log(err);
 			$(".joinForm").hide();
+			$(".alert-danger").hide();
 			//$(".alert-success").show();
 			//alert("you have already entered the food for this potluck");
 
 
 			var alertDiv = $("<div>");
 			alertDiv.addClass("alert alert-danger");
-			if(flag == 0){
-			    	alertDiv.text("You have already entered the food for this PotLuck");
-				    flag = 1;
-				    bodyContainer.append(alertDiv);
-			}
+			alertDiv.text("You have already entered the food for this PotLuck");
+				   
+			bodyContainer.append(alertDiv);
+			$(".alert-danger").show();
+			
 			potLuckFood.val("");
 			potLuckId.val("");
 
@@ -75,6 +76,44 @@ $(document).ready(function() {
 			$(".alert-danger").show().delay(3000).fadeOut();
 
 		});
+
+		// $.ajax({
+		// 	method: "POST",
+		// 	url: "/potLuckFood/potLuck/food",
+		// 	async: false
+
+		// })
+		// .done(function(results){
+		// 	console.log("done");
+		// 	$(".joinForm").hide();
+		// 	potLuckFood.val("");
+		// 	potLuckId.val("");
+
+		// })
+		// .fail(function(err){
+
+		// 	//var flag = 0;
+		// 	// console.log("fail");
+		// 	console.log(err);
+		// 	$(".joinForm").hide();
+		// 	//$(".alert-success").show();
+		// 	//alert("you have already entered the food for this potluck");
+
+
+		// 	var alertDiv = $("<div>");
+		// 	alertDiv.addClass("alert alert-danger");
+		// 	if(flag == 0){
+		// 	    	alertDiv.text("You have already entered the food for this PotLuck");
+		// 		    flag = 1;
+		// 		    bodyContainer.append(alertDiv);
+		// 	}
+		// 	potLuckFood.val("");
+		// 	potLuckId.val("");
+
+
+		// 	$(".alert-danger").show().delay(3000).fadeOut();
+
+		// })
 	}
 
 	

@@ -29,9 +29,10 @@ router.post('/potLuck/food', function(req, res){
 			idOfPotLuck: potLuckId,
 			UserId: userId
 		}
-		db.UserPotluck.create(foodInfo, function(data){
+		db.UserPotluck.create(foodInfo)
+		.then(function(data){
 			console.log("success");
-			res.redirect('/dashbord/dashbord');
+			res.send(data);
 		})
 		.catch(function(err) {
 			console.log("error in food " + err);
