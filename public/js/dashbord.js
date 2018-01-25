@@ -33,6 +33,7 @@ $(document).ready(function() {
 	function creatPotLuck(event){
 		console.log("inside createPotlock");
 
+
 		$(".potLuck-container").hide();
 		$(".potLuck-FoodContainer").hide();
 		$(".joinForm").hide();
@@ -57,7 +58,9 @@ $(document).ready(function() {
 	    });
 
 	}
+
 	var bodyContainer = $(".body-container");
+
 	function upsertPotLuck(potLuckData){
 		console.log("inside upsert");
 		$.post("/potLuck/potLuck", potLuckData)
@@ -67,6 +70,7 @@ $(document).ready(function() {
 			.fail(function(err){
 				console.log(err);
 			});
+
 		potLuckDate.val("");
 		potLuckDestenation.val("");
 		potLuckTheme.val("");
@@ -80,11 +84,13 @@ $(document).ready(function() {
 		$(".alert-success").show().delay(3000).fadeOut();
 
 
+
 	}
 
 	// invites guests
 	function inviteGuests(event){
 		console.log("inside invitGuests");
+
 
 		$(".joinForm").hide();
 		$(".fooInfo").hide();
@@ -121,6 +127,8 @@ $(document).ready(function() {
 			.fail(function(err){
 				console.log(err);
 			});
+
 		guestEmails.val("");
+
 	}
 }); 
