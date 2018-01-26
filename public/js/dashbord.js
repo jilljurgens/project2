@@ -78,7 +78,7 @@ $(document).ready(function() {
 		//$(".alert-success").show();
 		var alertSuccesDiv = $("<div>");
 		alertSuccesDiv.addClass("alert alert-success");
-		alertSuccesDiv.text("You can now invite to your PotLuck");
+		alertSuccesDiv.text("You can now invite to your Potluck");
 		bodyContainer.append(alertSuccesDiv);
 
 		$(".alert-danger").show().delay(3000).fadeOut();
