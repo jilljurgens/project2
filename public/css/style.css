@@ -149,7 +149,12 @@ stroke: 2px 2px #ab9353;
 .clear{
   clear:both;
 }
-
+.alert-success{
+  
+}
+.box{
+  background-color: #fff;
+}
 bluebell #155765
 olive #57652a
 ornate #ab9353
