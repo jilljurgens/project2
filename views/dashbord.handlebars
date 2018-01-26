@@ -5,32 +5,36 @@
 </head>
 <body>
 <div class="container-fluid ">
+  <br>
+  <br>
   <h2 class="page-header">Welcome to your Dashboard</h2>
   <div class="row buttonHolder">
     <div class="col-lg-12">
 
-      <button type="button" class="btn button potLuckInfo">My PotLucks Info</button>
+      <button type="button" class="btn button potLuckInfo">My PotLucks</button>
 
-          <button type="button" class="btn button  potLuckCreate" id="potLuckCreate">Host Potluck</button>
+          <button type="button" class="btn button  potLuckCreate" id="potLuckCreate">Host a Potluck</button>
 
           <button type="button" class="btn button  inviteGuests">Invite Guests</button>
 
-          <button type="button" class="btn button  join">Join a PutLuck</button>
+          <button type="button" class="btn button  join">Join a Potluck</button>
 
-          <button type="button" class="btn button  foodinfo">PutLuck Info</button>
+          <button type="button" class="btn button  foodinfo">Potluck Info</button>
 
     </div>
-    
+   
   </div>
+  <br>
+  <br>
   <div class="body-container">
 
   <div class="row potLuck-container">
       <div class="col-lg-8 col-md-offset-2">
-        <h3 id="potLuckInfoH1">PotLucks You Hosted</h3>
+        <h3 id="potLuckInfoH1">Potlucks You Hosted</h3>
         <table class="table table-hover" id="potlucktable">
             <thead id="theadInfo">
               <tr>
-                <th>PotLuck Id</th>
+                <th>Potluck Id</th>
                 <th>Date</th>
                 <th>Guest Emails</th>
               </tr>
@@ -46,12 +50,12 @@
 <!-- food info table -->
   <div class="row potLuck-FoodContainer">
       <div class="col-lg-8 col-md-offset-2">
-        <h3>PotLuck Info</h3>
+        <h3>Potluck Info</h3>
         <table class="table table-hover" id="potluckFood">
             <thead>
               <tr>
                 <th>User Name</th>
-                <th>Coming/Not</th>
+                <th>Attending</th>
                 <th>Food</th>
               </tr>
             </thead>
@@ -67,11 +71,11 @@
   <div class="row hostPotForm">
         <div class="col-lg-12">
             <div class="form-group">
-              <label for="date">Date of PotLuck:</label>
+              <label for="date">Date of the Potluck:</label>
               <input type="date" class="form-control" id="date">
-              <label for="theme">Theme of the PotLuck</label>
+              <label for="theme">Theme of the Potluck:</label>
               <input type="text" class="form-control" id="theme">
-              <label for="destination">Destination</label>
+              <label for="destination">Destination:</label>
               <input type="text" class="form-control" id="destination">
 
             </div> 
@@ -83,30 +87,30 @@
   <div class="row fooInfo">
         <div class="col-lg-12">
           <div class="form-group">
-              <label for="idOfPotLuck">enter the potLuck id </label>
+              <label for="idOfPotLuck">Search by Potluck Id</label>
               <input type="textarea" class="form-control" id="idOfPotLuck">
           </div> 
-          <button type="submit" class="btn button  btn-default see">SHOW</button> 
+          <button type="submit" class="btn button  btn-default see">Search</button> 
              
         </div>  
     </div>
 
-    <!-- host a potLuck form -->
+    <!-- host a potLuck form class="createOne" -->
   <div class="row joinForm">
         <div class="col-lg-12">
             <div class="form-group">
-              <label for="attending">Are you Joinning the PotLuck</label>
+              <label for="potLuckId">Please enter the Id of the Potluck  you want to join.</label>
+              <input type="text" class="form-control" id="potLuckId">
+              <label for="attending">Are you attending the Potluck?</label>
               <div class="radio-inline">
                 <label><input type="radio" name="attending" value="yes">yes</label>
               </div>
               <div class="radio-inline">
                 <label><input type="radio" name="attending" value="no">no</label>
               </div>
-              
-              <label for="food">Enter the food that you are bringing in</label>
+              <label for="food">Please specify the dish you are bringing. </label>
               <input type="text" class="form-control" id="food">
-              <label for="potLuckId">Enter the PotLuck Id you want to join</label>
-              <input type="text" class="form-control" id="potLuckId">
+              
 
             </div> 
 
@@ -119,30 +123,30 @@
   <div class="row fooInfo">
         <div class="col-lg-12">
           <div class="form-group">
-              <label for="idOfPotLuck">enter the potLuck id </label>
+              <label for="idOfPotLuck">Search by Potluck Id </label>
               <input type="textarea" class="form-control" id="idOfPotLuck">
           </div> 
-          <button type="submit" class="btn button  btn-default see">SHOW</button> 
+          <button type="submit" class="btn button  btn-default see">Search</button> 
              
         </div>  
     </div>
 
-    <!-- host a potLuck form -->
+    <!-- host a potLuck form addInfo on-->
   <div class="row joinForm">
         <div class="col-lg-12">
             <div class="form-group">
-              <label for="attending">Are you Joinning the PotLuck</label>
+              <label for="potLuckId">Please enter the Id of the Potluck  you want to join.</label>
+              <input type="text" class="form-control" id="potLuckId">
+              <label for="attending">Are you attending the Potluck?</label>
               <div class="radio-inline">
                 <label><input type="radio" name="attending" value="yes">yes</label>
               </div>
               <div class="radio-inline">
                 <label><input type="radio" name="attending" value="no">no</label>
               </div>
-              
-              <label for="food">Enter the food that you are bringing in</label>
+              <label for="food">Please specify the dish you are bringing.</label>
               <input type="text" class="form-control" id="food">
-              <label for="potLuckId">Enter the PotLuck Id you want to join</label>
-              <input type="text" class="form-control" id="potLuckId">
+              
             </div> 
             <button type="submit" class="btn button btn-default addInfo">Submit</button>   
         </div>  
@@ -152,10 +156,11 @@
   <div class="row inviteForm">
         <div class="col-lg-12">
             <div class="form-group">
-              <label for="emails">Enter the email id's of the guests(, seperated)</label>
+              <h6>Invite Recipients </h6>
+              <label for="emails">(Separate multiple email addresses with commas)</label>
               <input type="textarea" class="form-control" id="emails">
             </div> 
-            <button type="submit" class="btn button btn-default invite">Invite</button>   
+            <button type="submit" class="btn button btn-default invite">Send Invites</button>   
         </div>  
     </div>
 
@@ -177,6 +182,9 @@
       <!-- <script type="text/javascript">
         var fix = {{id}};
       </script> -->
+<br>
+<br>
+<br>
 </div>
 </body>
 </html>
