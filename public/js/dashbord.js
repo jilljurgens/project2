@@ -4,10 +4,8 @@ $(document).ready(function() {
 	$(".inviteForm").hide();
 
 	var userContainer = $(".user-container");
-	//$(document).on("click", "button.potLuckInfo", showAllPotLucks);
 	$(document).on("click", "#potLuckCreate", creatPotLuck);
 	$(document).on("click", ".createOne", submitPotLuck);
-	//$(document).on("click", "button.inviteGuests", inviteGuests);
 	$(document).on("click", ".inviteGuests", inviteGuests);
 	$(document).on("click", ".invite", invite);
 
@@ -39,7 +37,7 @@ $(document).ready(function() {
 		$(".joinForm").hide();
 		$(".fooInfo").hide();
 		$(".inviteForm").hide();
-		// $(".alert-success").hide();
+
 
 		$(".hostPotForm").show();
 		event.preventDefault();
@@ -65,7 +63,7 @@ $(document).ready(function() {
 			.done(function(data){
 				console.log("***data***"+data.data);
 				$(".hostPotForm").hide();
-				// div that shows the potLuck id
+				
 				var alertDiv = $("<div>");
 				alertDiv.addClass("alert alert-information");
 				alertDiv.text("Your Current PotLuck Id" +" " +data.data.id);		   
@@ -76,18 +74,6 @@ $(document).ready(function() {
 			.fail(function(err){
 				console.log(err);
 			});
-		// potLuckDate.val("");
-		// potLuckDestenation.val("");
-		// potLuckTheme.val("");
-
-		// //$(".alert-success").show();
-		// var alertSuccesDiv = $("<div>");
-		// alertSuccesDiv.addClass("alert alert-success");
-		// alertSuccesDiv.text("You can now invite to your PotLuck");
-		// bodyContainer.append(alertSuccesDiv);
-
-		// $(".alert-success").show().delay(3000).fadeOut();
-
 
 	}
 
@@ -100,7 +86,6 @@ $(document).ready(function() {
 		$(".hostPotForm").hide();
 		$(".potLuck-FoodContainer").hide();
 		$(".potLuck-container").hide();
-		//$(".alert-success").hide();
 
 		$(".inviteForm").show();
 		event.preventDefault();

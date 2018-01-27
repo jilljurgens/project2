@@ -13,7 +13,6 @@ $(document).ready(function() {
 		$(".fooInfo").hide();
 		$(".hostPotForm").hide();
 		$(".inviteForm").hide();
-		//$(".alert-success").hide();
 
 
 		console.log("inside joinPotLuck");
@@ -25,10 +24,10 @@ $(document).ready(function() {
 	function addInfo(event){
 		var radioValue;
 		event.preventDefault();
-	    // $("input[type='button']").click(function(){
+
             radioValue = $("input[name='attending']:checked").val();
             console.log(radioValue);
-        // });
+
 	    console.log("---radio value---"+radioValue);
 	    console.log("inside create potluck(2)");
 	    upsertPotLuckFood({
@@ -64,14 +63,12 @@ $(document).ready(function() {
 			potLuckId.val("");
 
 		}).fail(function(err){
-			// var flag = 0;
+
 			console.log("fail");
 			console.log(err);
 			$(".joinForm").hide();
 			$(".alert-danger").hide();
-			//$(".alert-success").show();
-			//alert("you have already entered the food for this potluck");
-
+			
 
 			var alertDiv = $("<div>");
 			alertDiv.addClass("alert alert-danger");

@@ -11,7 +11,6 @@ $(document).ready(function() {
 
 	function show(event){
 
-		//$(".alert-success").hide();
 		$(".fooInfo").show();
 		event.preventDefault();
 		$(".inviteForm").hide();
@@ -30,20 +29,13 @@ $(document).ready(function() {
 		event.preventDefault();
 		console.log("inside showfoodInfo");
 
-		// upsertId({
-		// 	id: idOfPotLuck.val().trim()
-		// })
 		upsertId();
 
 	}
 	function upsertId(){
-		//id = JSON.stringify(id);
-		//idPotLuck = "/?idOfPotLuck=" +id;
-		//console.log("upsertId");
-
+		
 		var id = idOfPotLuck.val().trim();
 		console.log("--id--"+id);
-		//console.log("id of potluck***"+JSON.stringify(id));
 		$.get("/potLuckFood/potLuck/food?idOfPotLuck="+id, function(data){
 			console.log("potluck id data***"+ JSON.stringify(data));
 

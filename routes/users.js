@@ -17,11 +17,6 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-// // dashbord
-// router.get('/dashbord', function(req, res){
-// 	res.render('dashbord');
-// });
-
 
 // Register User
 router.post('/register', function(req, res){
@@ -78,9 +73,7 @@ passport.use(new LocalStrategy(
       if (user == null) {
         return done(null, false, { message: 'Unknown User' });
       }
-      // if (user.password === password) {
-      //   return done(null, user);
-      // }
+
 	    bcrypt.compare(password, user.password, function(err, res) {
 	    	// console.log(user);
 	    	// console.log(res);
@@ -115,7 +108,7 @@ router.post('/login',
   function(req, res) {
   	userID = req.user.id;
   	console.log("user id of the user" + userID);
-    //res.redirect(`/dashbord/dashbord?userId=${userID}`);
+
     res.redirect('/dashbord/dashbord');
   });
 

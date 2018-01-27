@@ -15,7 +15,6 @@ $(document).ready(function() {
 		$(".fooInfo").hide();
 		$(".joinForm").hide();
 		$(".inviteForm").hide();
-		//$(".alert-success").hide();
 		$("#tbodyInfo").empty();
 
 		$("#theadInfo").show();
@@ -24,7 +23,6 @@ $(document).ready(function() {
 
 				console.log("inside ajax" +JSON.stringify(data));
 				if (data.potLuckData.length !== 0) {
-					//$(".alert-danger").hide();
 	    			for (var i = 0; i < data.potLuckData.length; i++) {
 	     				 var row = $("#potlucktable > tbody");
 	     				 row.addClass("eventsInTable");
@@ -44,7 +42,6 @@ $(document).ready(function() {
 
 	// Function for handling what to render when there are no potLucks
 	function renderEmpty(){
-		//$(".alert-success").show();
 		$("#potLuckInfoH1").hide();
 		$("#theadInfo").hide();
 		var alertDiv = $("<div>");

@@ -31,7 +31,6 @@ router.post('/potLuck/food', function(req, res){
 			console.log("------data-----", data == null);
 			if(data == null){
 				console.log("your potluckId is invalid");
-				//res.render('dashbord', {error: "your potluckId is invalid"});
 				var error = "your potluckId is invalid";
 				res.json({data:error});
 			}

@@ -66,10 +66,7 @@ router.post('/potLuck/update', function(req, res){
 
 	var guestEmails = req.body.guestEmails;
 	var idInvite = req.body.idInvite;
-	// req.checkBody('emails', 'emails are required').notEmpty();
-	// console.log("guest emails are:" +guestEmails);
-
-	// var errors = req.validationErrors();
+	
 
 	UserId = req.user.dataValues.id;
 	userName = req.user.dataValues.username;
@@ -114,8 +111,6 @@ router.post('/potLuck/update', function(req, res){
 					}
 
 				}).then(function(potLuck){
-						//if(err) throw err;
-						//emailCode();
 
 						db.PotLuck.findOne({
 							where: {
@@ -130,9 +125,7 @@ router.post('/potLuck/update', function(req, res){
 
 						 	//function call which sends req mails to the guest
 						 	sendemailRequest(guestEmails, potLuckDate, potLuckId, theme, destination);
-							//req.flash('success_msg', 'Invited Guests');
-
-							//res.redirect('/dashbord/dashbord');
+							
 						})
 
 				});
