@@ -62,7 +62,7 @@ router.post('/register', function(req, res){
 			console.log(user);
 		});
 
-		req.flash('success_msg', 'You are now registered and can now login');
+		req.flash('success_msg', 'You are registered and can now login');
 
 		res.redirect('/users/login');
 	}
@@ -122,7 +122,7 @@ router.post('/login',
 router.get('/logout', function(req, res){ 
 	req.logout();
 
-	req.flash('success_msg', 'You are now logged out');
+	req.flash('success_msg', 'You are logged out');
 
 	res.redirect('/users/login');
 });
